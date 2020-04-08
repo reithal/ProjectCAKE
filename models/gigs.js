@@ -1,5 +1,7 @@
+var Sequelize = require("sequelize");
+
 // Creating our Applicants model
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   var Gigs = sequelize.define("gigs", {
     employer_id: {
       type: DataTypes.INTEGER,
@@ -11,10 +13,13 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       unique: false,
     },
+    description: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     category: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: false,
     },
     volunteer: {
       type: DataTypes.BOOLEAN,
@@ -59,7 +64,17 @@ module.exports = function(sequelize, DataTypes) {
     assigned_to_id: {
       type: DataTypes.INTEGER,
       allowNull: true,
-    }, 
+    },
+    createdAt: {
+      type: Sequelize.DATE,
+      defaultValue: sequelize.literal("CURRENT_TIMESTAMP"),
+      allowNull: false,
+    },
+    updatedAt: {
+      type: Sequelize.DATE,
+      defaultValue: sequelize.literal("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"),
+      allowNull: false,
+    },
   });
 
   return Gigs;
