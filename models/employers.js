@@ -1,5 +1,7 @@
+var Sequelize = require("sequelize");
+
 // Creating our Employers model
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   var Employers = sequelize.define("employers", {
     first_name: {
       type: DataTypes.STRING,
@@ -23,6 +25,16 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.BIGINT,
       allowNull: true,
       unique: true,
+    },
+    createdAt: {
+      type: Sequelize.DATE,
+      defaultValue: sequelize.literal("CURRENT_TIMESTAMP"),
+      allowNull: false,
+    },
+    updatedAt: {
+      type: Sequelize.DATE,
+      defaultValue: sequelize.literal("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"),
+      allowNull: false,
     },
   });
 
