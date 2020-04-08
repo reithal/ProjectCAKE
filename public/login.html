@@ -10,32 +10,76 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-      </div>
-    </div>
-  </nav>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <h2>Login Form</h2>
-        <form class="login">
-          <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="email-input" placeholder="Email">
+  <main id="page-content" class="projectCAKE-content-login">
+    <div class="login-content">
+      <section class="login-content-left">
+        <article class="login-section-form projectCAKE-scrollbar signin">
+          <div class="header-login">
+            <a href="/" class="logo"><i class="icon-projectCAKE color-primary"></i></a>
+            <h1>Log in</h1>
+            <p class="summary">Log in now to access the latest local one off jobs in your community.</p>
           </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="password-input" placeholder="Password">
+          <form method="post" name="form_login" id="form_login_captcha" action="" enctype="multipart/form-data">
+            <input type="hidden" name="submit_auth" value="ok">
+            <div class="input-wrapper-projectCAKE input-email">
+              <label for="login">Your email</label>
+              <input type="email" name="login" id="login" class="projectCAKE-input" title="Your email" required=""
+                autocomplete="email" autofocus="">
+              <div class="form-error ico-input-error">
+                <p class="required">Login is invalid.</p>
+              </div>
+            </div>
+            <div class="input-wrapper-ico input-password">
+              <label for="password">Password</label>
+              <input type="password" name="password" id="password" class="projectCAKE-input" title="Password" required=""
+                autocomplete="current-password">
+              <div class="form-error projectCAKE-input-error">
+                <p class="required">Password is required.</p>
+              </div>
+            </div>
+            <button class="projectCAKE-button signin" type="submit" title="Ok">Ok</button>
+  
+            <a href="javascript:void(0);" id="forgotten-password" class="forget js-forget"
+              title="Forgot your password?">Forgot your password?</a>
+            <hr class="separation">
+            <p class="login-not-registered">Not registered yet? <a href="/create/account" class="color-primary"
+                title="Create a new account">Create a new account</a></p>
+          </form>
+        </article>
+        <article class="login-section-form projectCAKE-scrollbar forgotten-password inactive">
+          <div class="header-login">
+            <a href="/" class="logo link-home-projectCAKE"><i class="icon-projectCAKE color-primary"></i></a>
+            <h1>Reset your password</h1>
+            <p class="summary">Please provide the email address that you used when you signed up for your projectCAKE
+              account.<br><br>We will send you an email that will allow you to reset your password.</p>
           </div>
-          <button type="submit" class="btn btn-default">Login</button>
-        </form>
-        <br />
-        <p>Or sign up <a href="/">here</a></p>
-      </div>
+          <form id="forgot-password-form" action="" method="post" name="forgotPasswordForm" data-url="/password/reset"
+            novalidate="">
+            <input type="hidden" name="forgotPasswordHidden" value="1">
+            <input type="hidden" id="emailSentTitle" value="Success">
+            <input type="hidden" id="emailSent" value="An email has been sent with a link to reset your password.">
+            <div class="input-wrapper-ico input-email input-email-reset">
+              <label for="password-email">Your email</label>
+              <input class="projectCAKE-input" type="text" name="email" id="password-email" title="Email" required="">
+              <div class="form-error projectCAKE-input-error">
+                <p class="required">Email required.</p>
+                <p class="invalid">Email is invalid.</p>
+                <p class="error">Error</p>
+              </div>
+            </div>
+            <button class="ico-button submit-forgot-password" title="Enter">Enter</button>
+            <a href="javascript:void(0);" class="forget js-forget-back">Go back to log in</a>
+          </form>
+  
+        </article>
+        <div class="footer-copyright">
+          <p class="copyright">© 2020 projectCAKE All rights reserved.</p>
+        </div>
+      </section>
+  
     </div>
-  </div>
+  
+  </main>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="js/login.js"></script>
@@ -43,3 +87,6 @@
 </body>
 
 </html>
+
+
+
