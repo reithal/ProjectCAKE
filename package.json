@@ -1,5 +1,5 @@
 {
-  "name": "1-Passport-Example",
+  "name": "get_your_gig",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -32,5 +32,13 @@
     "eslint-plugin-prettier": "^2.6.2",
     "mocha": "^5.2.0",
     "prettier": "^1.13.7"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reithal/ProjectCAKE.git"
+  },
+  "bugs": {
+    "url": "https://github.com/reithal/ProjectCAKE/issues"
+  },
+  "homepage": "https://github.com/reithal/ProjectCAKE#readme"
 }
