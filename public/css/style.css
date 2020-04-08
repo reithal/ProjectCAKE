@@ -1,0 +1,31 @@
+form.signup,
+form.login {
+  margin-top: 50px;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.card {
+position: absolute;
+width: 250px;
+height: 250px;
+left: 206px;
+top: 271px;
+
+background: #FFFFFF;
+border-radius: 15px;
+}
+
+#logo {
+  font-family: Lemon;
+  font-size: 24px;
+}
+
+#sticky-footer {
+  height: 50px;
+  margin-top: -50px;
+  flex-shrink: none;
+}

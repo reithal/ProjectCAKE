@@ -1,7 +1,9 @@
-<h1>Gigs!</h1>
+<h3>Available Gigs in:</h3>
 <div class="row">
   {{#each gigs}}
-      {{> gigs/gig-block}}
-  {{/each}}
+  {{> gigs/gig-block}}
+  {{else}}
+  <p>No gigs available
+    {{/each}}
+  </p>
 </div>
-
