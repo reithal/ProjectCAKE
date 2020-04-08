@@ -1,0 +1,20 @@
+<h1>Local One Off</h1>
+
+<h3>Gigs</h3>
+
+<ul>
+  {{#each gigs}}
+  	<li>
+  	   <p>ID: {{this.id}}</p>
+       <p>Title: {{this.}}</p>
+  	</li>
+  {{/each}}
+</ul>
+
+<div>
+  <form action="/" method="POST">
+  	<textarea type="text" name="wish"></textarea>
+
+  	<button type="submit">Submit</button>
+  </form>
+</div>
