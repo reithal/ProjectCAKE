@@ -7,7 +7,7 @@ CREATE TABLE employers(
     first_name VARCHAR(45),
     last_name  VARCHAR(45),
     email VARCHAR(45),
-    phone int,
+    phone VARCHAR(10),
     PRIMARY KEY(id)
     );
 
@@ -17,7 +17,7 @@ CREATE TABLE applicants(
     first_name VARCHAR(45),
     last_name  VARCHAR(45),
     email VARCHAR(45),
-    phone int,
+    phone VARCHAR(10),
     qualifiers TEXT,
     PRIMARY KEY(id)
    );
@@ -27,6 +27,7 @@ CREATE TABLE gigs(
     id int AUTO_INCREMENT,
     employer_id int NOT NULL,
     title TEXT,
+    description TEXT,
     category VARCHAR(45),
     volunteer BOOLEAN DEFAULT 0,
     pay DECIMAL NULL,
@@ -37,6 +38,6 @@ CREATE TABLE gigs(
     zipcode int NOT NULL,
     completion_date DATE NOT NULL,
     laboring_hours int,
-    assigned_to_id int, 
+    assigned_to_id int,
     PRIMARY KEY(id)
    );
