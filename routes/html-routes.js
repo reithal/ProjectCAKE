@@ -7,7 +7,7 @@ module.exports = function(app) {
     res.render("index");
   });
 
-  app.get("/", function(req, res) {
+  app.get("/gigs", function(req, res) {
     res.render("gigs");
   });
 };
