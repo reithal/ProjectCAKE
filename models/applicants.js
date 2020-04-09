@@ -1,9 +1,8 @@
-
 var Sequelize = require("sequelize");
 
 // Creating our Applicants model
-module.exports = function (sequelize, DataTypes) {
-var Applicants = sequelize.define("applicants", {
+module.exports = function(sequelize, DataTypes) {
+  var Applicants = sequelize.define("Applicant", {
     first_name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -29,16 +28,6 @@ var Applicants = sequelize.define("applicants", {
     },
     qualifiers: {
       type: DataTypes.TEXT,
-      allowNull: false,
-    },
-    createdAt: {
-      type: Sequelize.DATE,
-      defaultValue: sequelize.literal("CURRENT_TIMESTAMP"),
-      allowNull: false,
-    },
-    updatedAt: {
-      type: Sequelize.DATE,
-      defaultValue: sequelize.literal("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"),
       allowNull: false,
     },
   });

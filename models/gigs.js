@@ -2,12 +2,7 @@ var Sequelize = require("sequelize");
 
 // Creating our Applicants model
 module.exports = function(sequelize, DataTypes) {
-  var Gigs = sequelize.define("gigs", {
-    employer_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      unique: true,
-    },
+  var Gigs = sequelize.define("Gig", {
     title: {
       type: DataTypes.TEXT,
       allowNull: false,
@@ -63,19 +58,11 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       allowNull: true,
     },
-    createdAt: {
-      type: Sequelize.DATE,
-      defaultValue: sequelize.literal("CURRENT_TIMESTAMP"),
-      allowNull: false,
-    },
-    updatedAt: {
-      type: Sequelize.DATE,
-      defaultValue: sequelize.literal(
-        "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
-      ),
-      allowNull: false,
-    },
   });
+
+  Gigs.associate = function(models) {
+    Gigs.belongsTo(models.Employer, { fereignKey: { allowNull: false } });
+  };
 
   return Gigs;
 };
