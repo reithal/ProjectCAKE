@@ -1,8 +1,8 @@
-var Sequelize = require("sequelize");
+let Sequelize = require("sequelize");
 
 // Creating our Employers model
-module.exports = function (sequelize, DataTypes) {
-  var Employers = sequelize.define("employers", {
+module.exports = function(sequelize, DataTypes) {
+  let Employers = sequelize.define("Employer", {
     first_name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -26,17 +26,11 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: true,
       unique: true,
     },
-    createdAt: {
-      type: Sequelize.DATE,
-      defaultValue: sequelize.literal("CURRENT_TIMESTAMP"),
-      allowNull: false,
-    },
-    updatedAt: {
-      type: Sequelize.DATE,
-      defaultValue: sequelize.literal("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"),
-      allowNull: false,
-    },
   });
+
+  Employers.associate = function(models) {
+    Employers.hasMany(models.Gig, { onDelete: "cascade" });
+  };
 
   return Employers;
 };

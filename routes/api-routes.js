@@ -1,9 +1,13 @@
 /*
+api routes
+- save employer info
+- get employers information
+- get employer by id
+- save employee info
+- get employee info
+- save gig information
 - get all gigs
 - get gigs by zipcode
-- save employer info
-- save employee info
-- save gig information
 */
 
 // Requiring our models and passport as we've configured it
@@ -57,10 +61,77 @@ module.exports = function(app) {
     }
   });
 
+  // create employer
+  app.post("/api/createEmployer", (req, res) => {
+    let first_name = req.body.first_name;
+    let last_name = req.body.last_name;
+    let email = req.body.email;
+    let phone = req.body.phone;
+
+    db.Employer.create({
+      first_name,
+      last_name,
+      email,
+      phone,
+    })
+      .then((newEmployer) => {
+        res.json("Employer added!");
+      })
+      .catch((err) => console.log(err));
+  });
+
+  // get employers information
+  app.get("/api/getEmployers", (req, res) => {
+    db.Employer.findAll()
+      .then((employers) => res.json(employers))
+      .catch((err) => console.log(err));
+  });
+
+  // get employer information by id
+  app.get("/api/getEmployer/:id", (req, res) => {
+    db.Employer.findOne({ where: { id: req.params.id } })
+      .then((employer) => res.json(employer))
+      .catch((err) => console.log(err));
+  });
+
+  // create applicant
+  app.post("/api/createApplicant", (req, res) => {
+    let first_name = req.body.first_name;
+    let last_name = req.body.last_name;
+    let email = req.body.email;
+    let phone = req.body.phone;
+    let qualifiers = req.body.qualifiers;
+
+    db.Applicant.create({
+      first_name,
+      last_name,
+      email,
+      phone,
+      qualifiers,
+    })
+      .then((newApplicant) => {
+        res.json("Applicant added!");
+      })
+      .catch((err) => console.log(err));
+  });
+
+  // get applicants information
+  app.get("/api/getApplicants", (req, res) => {
+    db.Applicant.findAll()
+      .then((applicants) => res.json(applicants))
+      .catch((err) => console.log(err));
+  });
+
+  // get applicant information by id
+  app.get("/api/getApplicant/:id", (req, res) => {
+    db.Applicant.findOne({ where: { id: req.params.id } })
+      .then((applicant) => res.json(applicant))
+      .catch((err) => console.log(err));
+  });
+
   // get all the gigs
   app.get("/api/getGigs", function(req, res) {
-    db.gigs
-      .findAll()
+    db.Gig.findAll({ include: [db.Employer] })
       .then((gigs) => {
         res.json(gigs);
       })
@@ -69,8 +140,10 @@ module.exports = function(app) {
 
   // get all the gigs that matches user's zipcode
   app.get("/api/getGigsByZipCode/:zipcode", function(req, res) {
-    db.gigs
-      .findAll({ where: { zipcode: req.params.zipcode } })
+    db.Gig.findAll({
+      include: [db.Employer],
+      where: { zipcode: req.params.zipcode },
+    })
       .then((gigs) => {
         res.json(gigs);
       })
@@ -78,35 +151,25 @@ module.exports = function(app) {
   });
 
   // save new gig
-  app.post("/api/createGig", function(req, res) {
-    db.gigs
-      .create({
-        employer_id: req.body.employer_id,
-        title: req.body.title,
-        description: req.body.description,
-        category: req.body.category,
-        volunteer: req.body.volunteer,
-        pay: req.body.pay,
-        recurring_gig: req.body.recurring_gig,
-        street_address: req.body.street_address,
-        city: req.body.city,
-        state: req.body.state,
-        zipcode: req.body.zipcode,
-        completion_date: req.body.completion_date,
-        laboring_hours: req.body.laboring_hours,
-        assigned_to_id: req.body.assigned_to_id,
-      })
+  app.post("/api/createGig", (req, res) => {
+    db.Gig.create({
+      title: req.body.title,
+      description: req.body.description,
+      category: req.body.category,
+      volunteer: req.body.volunteer,
+      pay: req.body.pay,
+      recurring_gig: req.body.recurring_gig,
+      street_address: req.body.street_address,
+      city: req.body.city,
+      state: req.body.state,
+      zipcode: req.body.zipcode,
+      completion_date: new Date(req.body.completion_date),
+      laboring_hours: req.body.laboring_hours,
+      assigned_to_id: req.body.assigned_to_id,
+    })
       .then((newGig) => {
-        res.json(newGig);
-      });
+        res.json("Gig was created!");
+      })
+      .catch((err) => console.log(err));
   });
 };
-
-/*
-- get all gigs
-- get gigs by zipcode
-
-- save employer info
-- save employee info
-- save gig information
-*/
