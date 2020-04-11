@@ -1,4 +1,8 @@
 $(document).ready(function () {
+
+  $('.nav-item').removeClass("active");
+  $('#navGig').addClass("active");
+
   // Getting references to our form and inputs
 
   $.get("/api/getGigs").then(function (response) {
@@ -11,7 +15,8 @@ $(document).ready(function () {
     });
 
   // Zip Search Button
-  $('#btnZipSearch').on("click", function (event) {
+  $('#btnZipSearch').on("click", function (e) {
+    e.preventDefault();
     clearTimeout(errMsgTmOut);
     var zip = $('#zipInput').val();
     if (zip) {
@@ -24,13 +29,18 @@ $(document).ready(function () {
       
     } else {
       $('#errorSpot').empty()
-      $('#errorSpot').append(`<em>Please enter a zip code.</em>`)
+      $('#errorSpot').append(`Please enter a zip code.`)
       errMsgClr();
-    }
+    };
+    
+  });
+
+  // Clears input text box on click.
+  $('#zipInput').mousedown(function () {
+    $(this).val("");
   });
 
 });
-
 
 
 var errMsgTmOut;
@@ -48,13 +58,26 @@ function renderResults(gigs) {
     
 
     for (i = 0; i < gigs.length; i++) {
-
-      var templateString = `<div class="col-lg-3 col-md-4 col-sm-6 mb-4"> <div class="clearfix card data-id="${gigs[i].id}" text-center d-block"> <img id="cardImg" class="card-img-top img-responsive" src="https://api.adorable.io/avatars/100/${gigs[i].Employer.id}@adorable.io.png" alt=""><div class="card-body"> <h4 class="card-title text-center"> <a href="#">${gigs[i].title}</a> </h4> <p class="card-text text-center category">${gigs[i].category}</p></div></div></div>`;
+      var typeOfJob;
+      console.log(gigs[i].volunteer);
+      if(gigs[i].volunteer) {
+        typeOfJob = "Volunteer Job";
+      } else {
+        typeOfJob = `Willing to Pay $${gigs[i].pay}`;
+      }
+      var avatar = `https://api.adorable.io/avatars/100/${gigs[i].Employer.id}@adorable.io.png`;
+      var templateString = `<div class="col-lg-3 col-md-4 col-sm-6 mb-4 btn" data-toggle="modal" data-target="#exampleModalCenter">`;
+      templateString += ` <div class="clearfix card data-id="${gigs[i].id}" text-center d-block">`;
+      templateString += ` <img id="cardImg" class="card-img-top img-responsive" src="${avatar}" alt="Avatar">`;
+      templateString += ` <div class="card-body">`;
+      templateString += ` <h4 class="card-header text-center">${gigs[i].title}</h4>`;
+      templateString += ` <p class="card-title text-center category">${gigs[i].category}</p>`;
+      templateString += ` <p class="card-text text-center category">${typeOfJob}</p></div></div></div>`;
 
       $('#cardContainer').append(templateString);
     }
   } else {
-    var noGigs = '<p>No Gigs Found</p>'
+    var noGigs = '<p class="d-flex m-1 p-2" id="noResults">No Gigs Found. Perhaps people need help in another area.</p>'
 
     $('#cardContainer').append(noGigs);
   }
