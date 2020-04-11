@@ -10,10 +10,11 @@ module.exports = function(app) {
   app.get("/gigs", function(req, res) {
     res.render("gigs");
   });
+
+  app.get("/post", function(req, res) {
+    res.render("post");
+  });
 };
-
-
-
 
 // Requiring path to so we can use relative routes to our HTML files
 //var path = require("path");
@@ -47,4 +48,3 @@ module.exports = function(app) {
 };
 
 */
-
