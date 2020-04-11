@@ -133,6 +133,7 @@ module.exports = function(app) {
   app.get("/api/getGigs", function(req, res) {
     db.Gig.findAll({ include: [db.Employer] })
       .then((gigs) => {
+        console.log(gigs)
         res.json(gigs);
       })
       .catch(console.error);

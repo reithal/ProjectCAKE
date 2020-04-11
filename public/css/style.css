@@ -6,13 +6,40 @@ form.login {
 html, body {
   min-height: calc(100vh-50px);
   margin: 0;
+  background-color: rgba(224, 241, 214, 0.8)!important;
+  
 }
 
-.card {
 
+#zipSearch > input {
+  display: inline-flex;
+  font-size: 22px;
+  width: 5em;
+}
+
+#btnZipSearch {
+  border-radius: 5px;
+
+}
+
+#errorSpot {
+  color: red;
+  font-size: 1rem;
+  font-family: 'Lemon';
+  
+}
+.card {
 width: 100%;
-background: #FFFFFF;
 border-radius: 15px;
+
+}
+
+#cardImg {
+  margin-top: 15px;
+  min-height: 100%;
+  width: 25%;
+  align-self: center;
+  border-radius: 50%;
 }
 
 #logo {
