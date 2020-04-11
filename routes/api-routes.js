@@ -171,7 +171,8 @@ module.exports = function(app) {
   // get all the gigs
   app.get("/api/getGigs", function(req, res) {
     db.Gig.findAll({ include: [db.Employer] })
-      .then(gigs => {
+      .then((gigs) => {
+        console.log(gigs)
         res.json(gigs);
       })
       .catch(console.error);
