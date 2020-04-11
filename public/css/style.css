@@ -6,10 +6,23 @@ form.login {
 html, body {
   min-height: calc(100vh-50px);
   margin: 0;
-  background-color: rgba(224, 241, 214, 0.8)!important;
+  background-image: url("../images/background1.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+#applyContainer {
+  padding-top: 100px;
   
 }
 
+#gigsContainer {
+  padding-top: 70px;
+  background-color: rgba(224, 241, 214, 0.6)!important;
+  background-color: transparent;
+}
 
 #zipSearch > input {
   display: inline-flex;
@@ -19,14 +32,12 @@ html, body {
 
 #btnZipSearch {
   border-radius: 5px;
-
 }
 
-#errorSpot {
-  color: red;
-  font-size: 1rem;
-  font-family: 'Lemon';
+#errorSpot, #noResults {
   
+  font-size: 1.5rem;
+  font-family: Lemon, Arial, Helvetica, sans-serif; 
 }
 .card {
 width: 100%;
@@ -43,7 +54,7 @@ border-radius: 15px;
 }
 
 #logo {
-  font-family: Lemon;
+  font-family: Lemon, Arial, Helvetica, sans-serif;
   font-size: 24px;
 }
 
