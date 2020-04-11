@@ -1,8 +1,8 @@
 <div class="container">
     <div class="form-wrap">
         <h1>Post Gig</h1>
- 
-        <form action="/post" method="POST">
+
+        <form>
             <div class="input-group">
                 <label for="title">Gig Title</label>
                 <input type="text" name="title" id="title" class="input-box" maxlength="100">
@@ -26,6 +26,11 @@
             <div class="input-group">
                 <label for="street_address">street_address</label>
                 <input type="text" name="street_address" id="street_address" class="input-box" maxlength="100">
+            </div>
+            
+            <div class="input-group">
+                <label for="city">city</label>
+                <input type="text" name="city" id="city" class="input-box" maxlength="100">
             </div>
 
             <div class="input-group">
@@ -59,7 +64,10 @@
                 <input type="text" name="completion_date" id="completion_date" class="input-box" maxlength="100">
             </div>
 
-            <input type="submit" value="Post Gig" class="btn btn-reverse">
+            <input type="submit" value="submit" class="btnbtn-success">
         </form>
     </div>
 </div>
+
+
+<script src="/js/post.js"></script>
