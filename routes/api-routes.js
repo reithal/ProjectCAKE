@@ -20,7 +20,7 @@ module.exports = function(app) {
     // Sending back a password, even a hashed password, isn't a good idea
     res.json({
       email: req.user.email,
-      id: req.user.id,
+      id: req.user.id
     });
   });
 
@@ -30,7 +30,7 @@ module.exports = function(app) {
   app.post("/api/signup", function(req, res) {
     db.User.create({
       email: req.body.email,
-      password: req.body.password,
+      password: req.body.password
     })
       .then(function() {
         res.redirect(307, "/api/login");
@@ -56,9 +56,48 @@ module.exports = function(app) {
       // Sending back a password, even a hashed password, isn't a good idea
       res.json({
         email: req.user.email,
-        id: req.user.id,
+        id: req.user.id
       });
     }
+  });
+
+  // post gig, saves employer info and gig info
+  app.post("/api/post", (req, res) => {
+    let first_name = req.body.first_name;
+    let last_name = req.body.last_name;
+    let email = req.body.email;
+    let phone = req.body.phone;
+
+    db.Employer.create({
+      first_name,
+      last_name,
+      email,
+      phone
+    })
+      .then(newEmployer => {
+        res.json("Employer added!");
+      })
+      .catch(err => console.log(err));
+
+    db.Gig.create({
+      title: req.body.title,
+      description: req.body.description,
+      category: req.body.category,
+      volunteer: req.body.volunteer,
+      pay: req.body.pay,
+      recurring_gig: req.body.recurring_gig,
+      street_address: req.body.street_address,
+      city: req.body.city,
+      state: req.body.state,
+      zipcode: req.body.zipcode,
+      completion_date: new Date(req.body.completion_date),
+      laboring_hours: req.body.laboring_hours,
+      assigned_to_id: req.body.assigned_to_id
+    })
+      .then(newGig => {
+        res.json("Gig was created!");
+      })
+      .catch(err => console.log(err));
   });
 
   // create employer
@@ -72,26 +111,26 @@ module.exports = function(app) {
       first_name,
       last_name,
       email,
-      phone,
+      phone
     })
-      .then((newEmployer) => {
+      .then(newEmployer => {
         res.json("Employer added!");
       })
-      .catch((err) => console.log(err));
+      .catch(err => console.log(err));
   });
 
   // get employers information
   app.get("/api/getEmployers", (req, res) => {
     db.Employer.findAll()
-      .then((employers) => res.json(employers))
-      .catch((err) => console.log(err));
+      .then(employers => res.json(employers))
+      .catch(err => console.log(err));
   });
 
   // get employer information by id
   app.get("/api/getEmployer/:id", (req, res) => {
     db.Employer.findOne({ where: { id: req.params.id } })
-      .then((employer) => res.json(employer))
-      .catch((err) => console.log(err));
+      .then(employer => res.json(employer))
+      .catch(err => console.log(err));
   });
 
   // create applicant
@@ -107,26 +146,26 @@ module.exports = function(app) {
       last_name,
       email,
       phone,
-      qualifiers,
+      qualifiers
     })
-      .then((newApplicant) => {
+      .then(newApplicant => {
         res.json("Applicant added!");
       })
-      .catch((err) => console.log(err));
+      .catch(err => console.log(err));
   });
 
   // get applicants information
   app.get("/api/getApplicants", (req, res) => {
     db.Applicant.findAll()
-      .then((applicants) => res.json(applicants))
-      .catch((err) => console.log(err));
+      .then(applicants => res.json(applicants))
+      .catch(err => console.log(err));
   });
 
   // get applicant information by id
   app.get("/api/getApplicant/:id", (req, res) => {
     db.Applicant.findOne({ where: { id: req.params.id } })
-      .then((applicant) => res.json(applicant))
-      .catch((err) => console.log(err));
+      .then(applicant => res.json(applicant))
+      .catch(err => console.log(err));
   });
 
   // get all the gigs
@@ -143,9 +182,9 @@ module.exports = function(app) {
   app.get("/api/getGigsByZipCode/:zipcode", function(req, res) {
     db.Gig.findAll({
       include: [db.Employer],
-      where: { zipcode: req.params.zipcode },
+      where: { zipcode: req.params.zipcode }
     })
-      .then((gigs) => {
+      .then(gigs => {
         res.json(gigs);
       })
       .catch(console.error);
@@ -166,11 +205,11 @@ module.exports = function(app) {
       zipcode: req.body.zipcode,
       completion_date: new Date(req.body.completion_date),
       laboring_hours: req.body.laboring_hours,
-      assigned_to_id: req.body.assigned_to_id,
+      assigned_to_id: req.body.assigned_to_id
     })
-      .then((newGig) => {
+      .then(newGig => {
         res.json("Gig was created!");
       })
-      .catch((err) => console.log(err));
+      .catch(err => console.log(err));
   });
 };

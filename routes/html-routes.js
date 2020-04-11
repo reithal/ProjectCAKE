@@ -14,6 +14,10 @@ module.exports = function(app) {
   app.get("/post", function(req, res) {
     res.render("post");
   });
+
+  app.get("/apply", function(req, res) {
+    res.render("apply");
+  });
 };
 
 // Requiring path to so we can use relative routes to our HTML files
