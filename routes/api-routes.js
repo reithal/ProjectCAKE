@@ -171,26 +171,28 @@ module.exports = function(app) {
   // get all the gigs
   app.get("/api/getGigs", function(req, res) {
     db.Gig.findAll({ include: [db.Employer] })
-      .then((gigs) => {
-        console.log(gigs)
-        res.json(gigs);
-      })
+      .then(gigs => res.json(gigs))
       .catch(console.error);
   });
 
-  // get all the gigs that matches user's zipcode
+  // get gig by id
+  app.get("/api/getGig/:id", function(req, res) {
+    db.Gig.findOne({ where: { id: req.params.id }, include: [db.Employer] })
+      .then(gig => res.json(gig))
+      .catch(console.error);
+  });
+
+  // get all the gigs that match the user's zipcode
   app.get("/api/getGigsByZipCode/:zipcode", function(req, res) {
     db.Gig.findAll({
       include: [db.Employer],
       where: { zipcode: req.params.zipcode }
     })
-      .then(gigs => {
-        res.json(gigs);
-      })
+      .then(gigs => res.json(gigs))
       .catch(console.error);
   });
 
-  // save new gig
+  // save gig
   app.post("/api/createGig", (req, res) => {
     db.Gig.create({
       title: req.body.title,
@@ -207,9 +209,19 @@ module.exports = function(app) {
       laboring_hours: req.body.laboring_hours,
       assigned_to_id: req.body.assigned_to_id
     })
-      .then(newGig => {
-        res.json("Gig was created!");
-      })
+      .then(newGig => res.json("Gig was created!"))
       .catch(err => console.log(err));
+  });
+
+  // update gig
+  app.put("/api/updateGig/:id", (req, res) => {
+    db.Gig.findOne({ where: { id: req.params.id } })
+      .then(gig => {
+        gig
+          .update({ assigned_to_id: req.body.assigned_to_id })
+          .then(updatedGig => res.json("Gig was updated!"))
+          .catch(console.error);
+      })
+      .catch(console.error);
   });
 };
