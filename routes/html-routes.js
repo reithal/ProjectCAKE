@@ -19,6 +19,10 @@ module.exports = function(app) {
     res.render("apply");
   });
 
+  app.get("/apply/:id", function(req, res) {
+    res.render("apply", { id: req.params.id });
+  });
+
   app.get("/volunteer", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/volunteer.html"));
   });
