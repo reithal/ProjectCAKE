@@ -1,11 +1,8 @@
 
 
 html body {
-    color: white;
-    padding:0;
-    margin:0;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', 'Arial', 'sans-serif';
-    overflow-x: hidden;
+    color: black;
+    font-family: Calibri;
   }
 
   
@@ -68,5 +65,28 @@ html body {
   }
 
 
-  
-  
+/*Post Styles*/
+
+ .form {
+   margin: 20px auto;
+   width: 320px;
+}
+
+.input-box {
+  padding:10px;
+  font-size: inherit;
+  background: rgb(224, 248, 7);
+}
+
+input[type=text] {
+  border: 2px solid black;
+}
+textarea {
+  border: 2px solid black;
+}
+input[type=submit] {
+  width: 225px;
+  height: 45px;
+  border: none;
+
+}

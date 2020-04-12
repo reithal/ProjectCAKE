@@ -1,73 +1,67 @@
-<div class="container">
-    <div class="form-wrap">
-        <h1>Post Gig</h1>
+<!DOCTYPE html>
+<html lang="en">
 
-        <form>
-            <div class="input-group">
-                <label for="title">Gig Title</label>
-                <input type="text" name="title" id="title" class="input-box" maxlength="100">
-            </div>
+<head>
+    <link rel="stylesheet" href="/css/style2.css" type="text/css" />
+</head>
 
-            <div class="input-group">
-                <label for="volunteer">volunteer</label>
-                <input type="text" name="volunteer" id="volunteer" class="input-box" maxlength="100">
-            </div>
+<body>
+    
 
-            <div class="input-group">
-                <label for="category">category</label>
-                <input type="text" name="category" id="category" class="input-box" maxlength="100">
-            </div>
+        
+            <form class="form">
 
-            <div class="input-group">
-                <label for="recurring_gig">recurring_gig</label>
-                <input type="text" name="recurring_gig" id="recurring_gig" class="input-box" maxlength="100">
-            </div>
-
-            <div class="input-group">
-                <label for="street_address">street_address</label>
-                <input type="text" name="street_address" id="street_address" class="input-box" maxlength="100">
-            </div>
+                
+                    <label for="title"></label>
+                    <input type="text" name="title" id="title" class="input-box" placeholder="Gig Title" maxlength="100">
+                
+                    <label for="volunteer"></label>
+                    <input type="text" name="volunteer" id="volunteer" class="input-box" placeholder="volunteer" maxlength="100">
             
-            <div class="input-group">
-                <label for="city">city</label>
-                <input type="text" name="city" id="city" class="input-box" maxlength="100">
-            </div>
+                    <label for="category"></label>
+                    <input type="text" name="category" id="category" class="input-box" placeholder="category" maxlength="100">
+            
+                    <label for="recurring_gig"></label>
+                    <input type="text" name="recurring_gig" id="recurring_gig" class="input-box" placeholder="recurring_gig"  maxlength="100">
+                
+                    <label for="street_address"></label>
+                    <input type="text" name="street_address" id="street_address" class="input-box" placeholder="street_address" maxlength="100">
+                
+                    <label for="city"></label>
+                    <input type="text" name="city" id="city" class="input-box" placeholder="city" maxlength="100">
+               
+                    <label for="state"></label>
+                    <input type="text" name="state" id="state" class="input-box" placeholder="state"  maxlength="100">
+               
+                    <label for="zipcode"></label>
+                    <input type="text" name="zipcode" id="zipcode" class="input-box" placeholder="zipcode"  maxlength="100">
+                
+                    <label for="description"></label>
+                    <textarea name="description" id="description" class="input-box"
+                    placeholder="Describe the details of the gig" rows="5"></textarea>
+                   
+            
+                    <label for="pay"></label>
+                    <input type="text" name="pay" id="pay" class="input-box" placeholder="pay"  maxlength="100">
+                                
+                    <label for="laboring_hours"></label>
+                    <input type="text" name="laboring_hours" id="laboring_hours" class="input-box" placeholder="laboring_hours"  maxlength="100">
+                
+                    <label for="completion_date"></label>
+                    <input type="text" name="completion_date" id="completion_date" class="input-box" placeholder="completion_date" 
+                        maxlength="100">
+    
+                <div>
+                <input type="submit" value="submit" class="btn btn-success">
+                </div>
 
-            <div class="input-group">
-                <label for="state">state</label>
-                <input type="text" name="state" id="state" class="input-box" maxlength="100">
-            </div>
-
-            <div class="input-group">
-                <label for="zipcode">zipcode</label>
-                <input type="text" name="zipcode" id="zipcode" class="input-box" maxlength="100">
-            </div>
-
-            <div class="input-group">
-                <label for="description">description</label>
-                <textarea name="description" id="description" class="input-box"
-                    placeholder="Describe the details of the gig" rows="10"></textarea>
-            </div>
-
-            <div class="input-group">
-                <label for="pay">pay</label>
-                <input type="text" name="pay" id="pay" class="input-box" maxlength="100">
-            </div>
-
-            <div class="input-group">
-                <label for="laboring_hours">laboring_hours</label>
-                <input type="text" name="laboring_hours" id="laboring_hours" class="input-box" maxlength="100">
-            </div>
-
-            <div class="input-group">
-                <label for="completion_date">completion_date</label>
-                <input type="text" name="completion_date" id="completion_date" class="input-box" maxlength="100">
-            </div>
-
-            <input type="submit" value="submit" class="btnbtn-success">
-        </form>
+            </form>
+        </div>
     </div>
-</div>
+
+    <script src="/js/post.js"></script>
 
 
-<script src="/js/post.js"></script>
+</body>
+
+</html>
