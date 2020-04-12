@@ -27,6 +27,9 @@
                                     <div class="col-md-12">
                                         <div class="form-group"> <label for="form_message">Message</label> <textarea id="form_message" name="message" class="form-control" placeholder="Optional: Tell us why you qualify for the gig." rows="4"></textarea> </div>
                                     </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group"> <label for="form_applyId">Applying For Gig</label> <input id="form_applyId" data-id={{id}}name="applyId" class="form-control" value="ValueFromDBHere" readonly></input> </div>
+                                    </div>
                                     <div class="col-md-12"> <input type="submit" class="btn btn-success btn-send pt-2 btn-block " value="Apply"> </div>
                                 </div>
                             </div>
@@ -37,4 +40,4 @@
         </div> <!-- /.row-->
     </div>
 </div>
-  <script src="/js/apply.js"></script>
+<script src="/js/apply.js"></script>

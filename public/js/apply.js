@@ -2,15 +2,18 @@ $(document).ready(function () {
   // Getting references to our form and input
   var applyForm = $("form.apply");
 
-  var emailInput = $("input#form-email");
-  var firstNameInput = $("input#form-name");
-  var lastNameInput = $("input#form-lastname");
-  var phoneInput = $("input#form-phone");
-  var messageInput = $("input#form-message");
+  var emailInput = $("input#form_email");
+  var firstNameInput = $("input#form_name");
+  var lastNameInput = $("input#form_lastname");
+  var phoneInput = $("input#form_phone");
+  var messageInput = $("textarea#form_message");
+  var applyId = $('#form_applyId').data("id");
 
-  // When the signup button is clicked, we validate the email and name are not blank
+  // When the apply button is clicked, we validate the email and name are not blank
   applyForm.on("submit", function(event) {
     event.preventDefault();
+    if(!messageInput) {messageInput = ""};
+
     var userData = {
       first_name: firstNameInput.val().trim(),
       last_name: lastNameInput.val().trim(),
@@ -18,19 +21,30 @@ $(document).ready(function () {
       phone: phoneInput.val().trim(),
       qualifiers: messageInput.val()
     };
-
-    if (!userData.email || !userData.firstName) {
+    
+   
+    if (!userData.email || !userData.first_name) {
+      console.log("something went wrong.")
       return;
     }
     // If we have an name and email, run the applyGig function
     applyGig(userData);
-    //TODO: UPDATE THIS
     firstNameInput.val("");
     lastNameInput.val("");
     phoneInput.val("");
     messageInput.val("");
     emailInput.val("");
   });
+
+  $.get("/api/getGig/"+applyId).then(function (response) {
+
+    $("#form_applyId").val(`${response.title} with ${response.Employer.first_name} ${response.Employer.last_name}`);
+
+  })// If there's an error, log the error
+    .catch(function (err) {
+      console.log(err);
+    });
+
 
   // Does a post to the applyGig route. If successful, we are redirected to the gigs page
   // Otherwise we log any errors
@@ -42,8 +56,6 @@ $(document).ready(function () {
       })
       .catch(applyErr);
   }
-
-  console.log("loaded apply.");
 
   function applyErr(err) {
     $("#alert .msg").text(err.responseJSON);
