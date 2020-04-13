@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;900&display=swap");
+
+html,
+body {
+  background-image: none;
+}
+
+.loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 2;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  display: none;
+}
+
+.loading .background {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  background-color: #fff;
+  opacity: 0.5;
+}
+
+.hero {
+  height: 70vh;
+  width: 100vw;
+  background-image: url("https://ucarecdn.com/1fa275cc-b107-4dac-8511-03a4002961aa/larmrmahAEaTUnvneikunsplash1.jpg");
+  background-position: center;
+  background-size: cover;
+
+  font-family: "Source Sans Pro", sans-serif;
+  position: relative;
+}
+
+.hero .content {
+  color: #fff;
+  position: absolute;
+  width: 90%;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  text-align: center;
+}
+
+.hero .content h1 {
+  font-weight: bold;
+  font-size: 50px;
+}
+
+.hero .content p {
+  font-size: 35px;
+}
