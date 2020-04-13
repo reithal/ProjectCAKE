@@ -25,7 +25,6 @@ module.exports = function(app) {
 
   app.get("/volunteer", function(req, res) {
     res.render("volunteer");
-    // res.sendFile(path.join(__dirname, "../public/volunteer.html"));
   });
 
   app.get("/login", function(req, res) {
@@ -38,6 +37,10 @@ module.exports = function(app) {
 
   app.get("/members", isAuthenticated, function(req, res) {
     res.render("members");
+  });
+
+  app.get("/post", isAuthenticated, function(req, res) {
+    res.render("post");
   });
 };
 
