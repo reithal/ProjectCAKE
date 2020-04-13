@@ -21,13 +21,13 @@ module.exports = function(sequelize, DataTypes) {
       defaultValue: false,
       allowNull: false,
     },
-    pay: {
-      type: DataTypes.DECIMAL,
-      allowNull: true,
-    },
     recurring_gig: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
+      allowNull: true,
+    },
+    pay: {
+      type: DataTypes.DECIMAL,
       allowNull: true,
     },
     street_address: {
@@ -46,12 +46,12 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    completion_date: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
     laboring_hours: {
       type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    completion_date: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
     assigned_to_id: {

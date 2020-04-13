@@ -90,7 +90,7 @@ module.exports = function(app) {
       city: req.body.city,
       state: req.body.state,
       zipcode: req.body.zipcode,
-      completion_date: new Date(req.body.completion_date),
+      completion_date: req.body.completion_date,
       laboring_hours: req.body.laboring_hours,
       assigned_to_id: req.body.assigned_to_id
     })
@@ -219,7 +219,7 @@ app.get("/api/getGigs", function(req, res) {
       city: req.body.city,
       state: req.body.state,
       zipcode: req.body.zipcode,
-      completion_date: new Date(req.body.completion_date),
+      completion_date: req.body.completion_date,
       laboring_hours: req.body.laboring_hours,
       assigned_to_id: req.body.assigned_to_id
     })
