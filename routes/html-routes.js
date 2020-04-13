@@ -18,6 +18,10 @@ module.exports = function(app) {
   app.get("/apply", function(req, res) {
     res.render("apply");
   });
+
+  app.get("/volunteer", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/volunteer.html"));
+  });
 };
 
 // Requiring path to so we can use relative routes to our HTML files
