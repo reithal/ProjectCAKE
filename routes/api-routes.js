@@ -90,7 +90,7 @@ module.exports = function(app) {
       city: req.body.city,
       state: req.body.state,
       zipcode: req.body.zipcode,
-      completion_date: new Date(req.body.completion_date),
+      completion_date: req.body.completion_date,
       laboring_hours: req.body.laboring_hours,
       assigned_to_id: req.body.assigned_to_id
     })
@@ -149,7 +149,7 @@ module.exports = function(app) {
       qualifiers
     })
       .then(newApplicant => {
-        res.json("Applicant added!");
+        res.json(newApplicant);
       })
       .catch(err => console.log(err));
   });
@@ -174,6 +174,20 @@ module.exports = function(app) {
       .then(gigs => res.json(gigs))
       .catch(console.error);
   });
+
+// get all the gigs that are checked Volunteer
+app.get("/api/getGigs", function(req, res) {
+  db.Gig.findAll({where:{volunteer: '1'}, include: [db.Employer] })
+    .then(gigs => res.json(gigs))
+    .catch(console.error);
+});
+
+// get all the gigs that are checked Recurring Gig
+app.get("/api/getGigs", function(req, res) {
+  db.Gig.findAll({where:{recurring_gig: '1'}, include: [db.Employer] })
+    .then(gigs => res.json(gigs))
+    .catch(console.error);
+});
 
   // get gig by id
   app.get("/api/getGig/:id", function(req, res) {
@@ -205,7 +219,7 @@ module.exports = function(app) {
       city: req.body.city,
       state: req.body.state,
       zipcode: req.body.zipcode,
-      completion_date: new Date(req.body.completion_date),
+      completion_date: req.body.completion_date,
       laboring_hours: req.body.laboring_hours,
       assigned_to_id: req.body.assigned_to_id
     })

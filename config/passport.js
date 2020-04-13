@@ -11,7 +11,7 @@ passport.use(new LocalStrategy(
   },
   function(email, password, done) {
     // When a user tries to sign in this code runs
-    db.User.findOne({
+    db.Employer.findOne({
       where: {
         email: email
       }
@@ -29,6 +29,7 @@ passport.use(new LocalStrategy(
         });
       }
       // If none of the above, return the user
+      
       return done(null, dbUser);
     });
   }

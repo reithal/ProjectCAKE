@@ -1,5 +1,5 @@
 let Sequelize = require("sequelize");
-
+var bcrypt = require("bcryptjs");
 // Creating our Employers model
 module.exports = function(sequelize, DataTypes) {
   let Employers = sequelize.define("Employer", {
