@@ -25,7 +25,6 @@ module.exports = function(app) {
 
   app.get("/volunteer", function(req, res) {
     res.render("volunteer");
-    // res.sendFile(path.join(__dirname, "../public/volunteer.html"));
   });
 
   app.get("/login", function(req, res) {
@@ -38,6 +37,27 @@ module.exports = function(app) {
 
   app.get("/members", isAuthenticated, function(req, res) {
     res.render("members");
+  });
+
+  app.get("/post", isAuthenticated, function(req, res) {
+    res.render("post");
+  });
+};
+
+// Requiring path to so we can use relative routes to our HTML files
+//var path = require("path");
+
+/*
+// Requiring our custom middleware for checking if a user is logged in
+var isAuthenticated = require("../config/middleware/isAuthenticated");
+
+module.exports = function(app) {
+  app.get("/", function(req, res) {
+    // If the user already has an account send them to the members page
+    if (req.user) {
+      res.redirect("/members");
+    }
+    res.sendFile(path.join(__dirname, "../public/signup.html"));
   });
 
   app.get("/login", function(req, res) {
@@ -51,3 +71,4 @@ module.exports = function(app) {
     res.render("members");
   });
 }
+*/

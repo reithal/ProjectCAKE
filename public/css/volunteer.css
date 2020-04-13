@@ -5,6 +5,13 @@ body {
   background-image: none;
 }
 
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .loading {
   position: absolute;
   top: 0;
@@ -12,10 +19,6 @@ body {
   height: 100vh;
   width: 100vw;
   z-index: 2;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
   display: none;
 }
@@ -57,6 +60,28 @@ body {
   font-size: 50px;
 }
 
-.hero .content p {
-  font-size: 35px;
+.hero .content .input {
+  width: 90vw;
+  max-width: 400px;
+  background-color: blue;
+  margin: auto;
+  position: relative;
+  font-size: 20px;
+}
+
+.hero .content .input input {
+  width: 100%;
+  border: none;
+  padding: 10px 20px;
+  outline: none;
+}
+
+.hero .content .input button {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  outline: none;
 }
