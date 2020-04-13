@@ -106,18 +106,21 @@ module.exports = function(app) {
     let last_name = req.body.last_name;
     let email = req.body.email;
     let phone = req.body.phone;
-
+    let password = req.body.password;
     db.Employer.create({
       first_name,
       last_name,
       email,
-      phone
+      phone,
+      password
     })
       .then(newEmployer => {
         res.json("Employer added!");
       })
       .catch(err => console.log(err));
   });
+
+
 
   // get employers information
   app.get("/api/getEmployers", (req, res) => {
