@@ -39,7 +39,14 @@ $(document).ready(() => {
           alert("No event found in this area please try again");
         } else {
           events = events.event; // target the events array
-          events.map(event => console.log(event.city_name));
+
+          console.log(events);
+
+          events.map(event => {
+            let listItem = `<div class="jumbotron"><h1 class="display-4">${event.title}</h1> <p class="lead">${event.city_name}</p><a class="btn btn-primary btn-lg" href="${event.url}" role="button" target="_blank">Learn more</a></div>`;
+
+            $(".response").append(listItem);
+          });
         }
       });
     } else {
