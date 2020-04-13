@@ -13,20 +13,24 @@ $(document).ready(function () {
   applyForm.on("submit", function(event) {
     event.preventDefault();
     if(!messageInput) {messageInput = ""};
-
+    //stripping dashes since its stored as BigInt
+    const phone = phoneInput.val().replace(/-/g, "");
+    
     var userData = {
       first_name: firstNameInput.val().trim(),
       last_name: lastNameInput.val().trim(),
       email: emailInput.val().trim(),
-      phone: phoneInput.val().trim(),
+      phone: phone,
       qualifiers: messageInput.val()
     };
     
+
    
     if (!userData.email || !userData.first_name) {
       console.log("something went wrong.")
       return;
     }
+    
     // If we have an name and email, run the applyGig function
     applyGig(userData);
     firstNameInput.val("");
@@ -49,10 +53,20 @@ $(document).ready(function () {
   // Does a post to the applyGig route. If successful, we are redirected to the gigs page
   // Otherwise we log any errors
   function applyGig(applicant) {
+    var newAppID;
     $.post("/api/createApplicant", applicant)
       .then(function(data) {
-        window.location.replace("/gigs");
+        console.log(data)
+         newAppID = {
+          assigned_to_id: data.id} ;
+
+        alert("Application posted succesfully.");
+
         // If there's an error, handle it by throwing up a bootstrap alert
+      }).then(function(data) {
+        console.log(newAppID)
+        $.put(`/api/updateGig/${applyId}`, newAppID )
+        window.location.replace("/gigs");
       })
       .catch(applyErr);
   }
