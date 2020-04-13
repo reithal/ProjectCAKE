@@ -3,24 +3,20 @@
   <div class="row">
     <div class="col-md-6">
       <div class="card">
-        <form class="box login"  name="form_login" id="form_login_captcha" action=""
-          enctype="multipart/form-data">
+        <form class="box login"  name="form_login" id="form_login_captcha" action="" enctype="multipart/form-data">
           <h1>Login</h1>
           <p class="text-muted"> Please enter your login and password!</p>
           <input type="hidden" name="submit_auth" value="ok">
           <div class="input-wrapper-projectCAKE input-email">
-            <input type="email" id="email-input" name="" placeholder="Email" title="Your email" required="" autocomplete="email"
+            <input type="email" id="email-input" name="login" placeholder="Email" title="Your email" required="" autocomplete="email"
               autofocus="">
-            <div class="form-error ico-input-error">
-              <p class="required">Login is invalid.</p>
+            <div id="authError" class="form-error ico-input-error card bg-dark">
+              <p id="authErrorText" style="color: red;" class="required">Login is invalid.</p>
             </div>
           </div>
           <div class="input-wrapper-ico input-password">
             <input type="password" name="password" id="password-input" placeholder="Password" class="projectCAKE-input" title="Password" required=""
                 autocomplete="current-password">
-            <div class="form-error projectCAKE-input-error">
-              <p class="required">Password is required.</p>
-            </div>
             <a class="forgot text-muted" href="#">Forgot password?</a>
             <button type="submit" id="login" name="" value="Login" >Login</button>
           </div>
