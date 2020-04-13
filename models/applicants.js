@@ -6,30 +6,30 @@ module.exports = function(sequelize, DataTypes) {
     first_name: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: false,
+      unique: false
     },
     last_name: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: false,
+      unique: false
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
       validate: {
-        isEmail: true,
-      },
+        isEmail: true
+      }
     },
     phone: {
-      type: DataTypes.BIGINT,
+      type: DataTypes.STRING,
       allowNull: true,
-      unique: true,
+      unique: true
     },
     qualifiers: {
       type: DataTypes.TEXT,
-      allowNull: false,
-    },
+      allowNull: false
+    }
   });
   return Applicants;
 };
