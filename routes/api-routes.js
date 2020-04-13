@@ -175,6 +175,20 @@ module.exports = function(app) {
       .catch(console.error);
   });
 
+// get all the gigs that are checked Volunteer
+app.get("/api/getGigs", function(req, res) {
+  db.Gig.findAll({where:{volunteer: '1'}, include: [db.Employer] })
+    .then(gigs => res.json(gigs))
+    .catch(console.error);
+});
+
+// get all the gigs that are checked Recurring Gig
+app.get("/api/getGigs", function(req, res) {
+  db.Gig.findAll({where:{recurring_gig: '1'}, include: [db.Employer] })
+    .then(gigs => res.json(gigs))
+    .catch(console.error);
+});
+
   // get gig by id
   app.get("/api/getGig/:id", function(req, res) {
     db.Gig.findOne({ where: { id: req.params.id }, include: [db.Employer] })
