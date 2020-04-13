@@ -3,7 +3,7 @@ $(document).ready(function() {
   var loginBtn = $("button#login");
   var emailInput = $("input#email-input");
   var passwordInput = $("input#password-input");
-
+  $('#authError').hide(); 
   // When the form is submitted, we validate there's an email and password entered
   loginBtn.on("click", function(event) {
     event.preventDefault();
@@ -34,6 +34,12 @@ $(document).ready(function() {
         // If there's an error, log the error
       })
       .catch(function(err) {
+        
+        if (err.status === 401){
+          console.log("captured 401")
+          $('#authError').show();
+          $('#authErrorText').css("text-color", "red");
+        }
         console.log(err);
       });
   }
