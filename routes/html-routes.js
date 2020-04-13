@@ -1,5 +1,5 @@
 var path = require("path");
-
+var isAuthenticated = require("../config/middleware/isAuthenticated");
 // Each of the below routes just handles the HTML page that the user gets sent to.
 module.exports = function(app) {
   // index route loads..
@@ -24,7 +24,20 @@ module.exports = function(app) {
   });
 
   app.get("/volunteer", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/volunteer.html"));
+    res.render("volunteer");
+    // res.sendFile(path.join(__dirname, "../public/volunteer.html"));
+  });
+
+  app.get("/login", function(req, res) {
+    // If the user already has an account send them to the post page
+    if (req.user) {
+      res.redirect("/post");
+    }
+    res.render("login");
+  });
+
+  app.get("/members", isAuthenticated, function(req, res) {
+    res.render("members");
   });
 };
 
