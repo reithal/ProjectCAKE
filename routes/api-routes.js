@@ -149,7 +149,7 @@ module.exports = function(app) {
       qualifiers
     })
       .then(newApplicant => {
-        res.json("Applicant added!");
+        res.json(newApplicant);
       })
       .catch(err => console.log(err));
   });
