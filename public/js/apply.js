@@ -61,7 +61,7 @@ $(document).ready(function () {
           assigned_to_id: data.id
         };
 
-        alert("Application posted succesfully.");
+        //alert("Application posted succesfully.");
 
         // If there's an error, handle it by throwing up a bootstrap alert
       }).then(function (data) {
