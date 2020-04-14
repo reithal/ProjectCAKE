@@ -10,17 +10,13 @@ module.exports = function(app) {
   app.get("/about", function(req, res) {
     res.render("about");
   });
-  
+
   app.get("/signup", function(req, res) {
     res.render("signup");
   });
 
   app.get("/gigs", function(req, res) {
     res.render("gigs");
-  });
-
-  app.get("/post", function(req, res) {
-    res.render("post");
   });
 
   app.get("/apply", function(req, res) {
@@ -43,40 +39,7 @@ module.exports = function(app) {
     res.render("login");
   });
 
-  app.get("/members", isAuthenticated, function(req, res) {
-    res.render("members");
-  });
-
   app.get("/post", isAuthenticated, function(req, res) {
     res.render("post");
   });
 };
-
-// Requiring path to so we can use relative routes to our HTML files
-//var path = require("path");
-
-/*
-// Requiring our custom middleware for checking if a user is logged in
-var isAuthenticated = require("../config/middleware/isAuthenticated");
-
-module.exports = function(app) {
-  app.get("/", function(req, res) {
-    // If the user already has an account send them to the members page
-    if (req.user) {
-      res.redirect("/members");
-    }
-    res.sendFile(path.join(__dirname, "../public/signup.html"));
-  });
-
-  app.get("/login", function(req, res) {
-    // If the user already has an account send them to the post page
-    if (req.user) {
-      res.redirect("/post");
-    }
-    res.render("login");
-  });
-  app.get("/members", isAuthenticated, function(req, res) {
-    res.render("members");
-  });
-}
-*/
