@@ -216,6 +216,7 @@ module.exports = function(app) {
   // save gig
   app.post("/api/createGig", (req, res) => {
     db.Gig.create({
+      EmployerId: req.body.employerid,
       title: req.body.title,
       description: req.body.description,
       category: req.body.category,
