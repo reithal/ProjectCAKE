@@ -1,37 +1,76 @@
-
-<body>
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-      </div>
-    </div>
-  </nav>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <div class="card">
-        <h2>Sign Up Form</h2>
-        <form class="signup">
-          <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="email-input" placeholder="Email">
+<div class="container">
+  <div class="row ">
+    <div class="col-lg-7 mx-auto" id="signupContainer">
+      <div class="card mt-2 mx-auto p-4 bg-light">
+        <div class="card-body bg-light">
+          <div class="container">
+            
+            <form class="signup" role="form">
+              <div class="controls">
+                <div class="row">
+                  <div class="col-12"><h2>Register An Account</h2></div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="form_name">Firstname *</label>
+                      <input id="form_name" type="text" name="name" class="form-control"
+                        placeholder="Please enter your firstname *" required="required"
+                        data-error="Firstname is required.">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="form_lastname">Lastname *</label> <input id="form_lastname" type="text" name="surname"
+                        class="form-control" placeholder="Please enter your lastname *" required="required"
+                        data-error="Lastname is required."> </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group"> <label for="form_email">Email *</label> <input id="form_email" type="email"
+                        name="email" class="form-control" placeholder="Please enter your email *" required="required"
+                        data-error="Valid email is required."> </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group"> <label for="form_phone">Phone Number</label> <input id="form_phone"
+                        type="tel" name="phone" class="form-control" placeholder="212-555-5678"
+                        pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"> </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group"> <label for="form_password">Password</label>
+                      <input type="password" class="form-control" id="password-input" placeholder="Password"></div>
+                  </div>
+                  <div class="col-md-12"> <input type="submit" class="btn btn-success btn-send pt-2 btn-block "
+                      value="Apply"> </div>
+                </div>
+              </div>
+            </form>
           </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="password-input" placeholder="Password">
-          </div>
-          <div style="display: none" id="alert" class="alert alert-danger" role="alert">
-            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-            <span class="sr-only">Error:</span> <span class="msg"></span>
-          </div>
-          <button type="submit" class="btn btn-success">Sign Up</button>
-        </form>
-        <br />
-        <p>Or log in <a href="/login">here</a></p>
         </div>
+      </div> <!-- /.8 -->
+    </div> <!-- /.row-->
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="signupDetail" tabindex="-1" role="dialog" aria-labelledby="signupDetailCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="signupDetailLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="signupBtn" class="btn btn-success btn-send">Close</button>
       </div>
     </div>
   </div>
+</div>
+<script src="/js/signup.js"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript" src="js/signup.js"></script>
