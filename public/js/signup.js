@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
   // Getting references to our form and input
   var signUpForm = $("form.signup");
   var firstnameInput = $("input#form_name");
@@ -7,7 +7,7 @@ $(document).ready(function() {
   var passwordInput = $("input#password-input");
 
   // When the signup button is clicked, we validate the email and password are not blank
-  signUpForm.on("submit", function(event) {
+  signUpForm.on("submit", function (event) {
     event.preventDefault();
     var userData = {
       first_name: firstnameInput.val().trim(),
@@ -29,13 +29,13 @@ $(document).ready(function() {
   // Otherwise we log any errors
   function signUpUser(Employer) {
     $.post("/api/createEmployer", Employer)
-      .then(function(data) {
+      .then(function (data) {
         console.log(data)
         $('.modal-body').empty();
         $('#signupDetailLongTitle').text("Registration Complete!");
         $('.modal-body').append(`<hr>${data.first_name} ${data.last_name}`);
         $('.modal-body').append(` Your user ID is: ${data.email}`);
-        
+
 
         $("#signupDetail").modal('show');
         //window.location.replace("/login");
@@ -43,15 +43,15 @@ $(document).ready(function() {
       })
       .catch(handleLoginErr);
 
-      $(document).on("click", "#signupBtn", function () {
-        
-        //console.log(index);      
-        window.location.replace("/login");
-        
-      });
+    $(document).on("click", "#signupBtn", function () {
 
-      $('#signupDetail').on('hidden.bs.modal', function () {
-        window.location.replace("/login");
+      //console.log(index);      
+      window.location.replace("/login");
+
+    });
+
+    $('#signupDetail').on('hidden.bs.modal', function () {
+      window.location.replace("/login");
     });
   }
 
