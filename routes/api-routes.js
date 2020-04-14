@@ -120,8 +120,6 @@ module.exports = function(app) {
       .catch(err => console.log(err));
   });
 
-
-
   // get employers information
   app.get("/api/getEmployers", (req, res) => {
     db.Employer.findAll()
@@ -178,19 +176,19 @@ module.exports = function(app) {
       .catch(console.error);
   });
 
-// get all the gigs that are checked Volunteer
-app.get("/api/getGigs", function(req, res) {
-  db.Gig.findAll({where:{volunteer: '1'}, include: [db.Employer] })
-    .then(gigs => res.json(gigs))
-    .catch(console.error);
-});
+  // get all the gigs that are checked Volunteer
+  app.get("/api/getGigs", function(req, res) {
+    db.Gig.findAll({ where: { volunteer: "1" }, include: [db.Employer] })
+      .then(gigs => res.json(gigs))
+      .catch(console.error);
+  });
 
-// get all the gigs that are checked Recurring Gig
-app.get("/api/getGigs", function(req, res) {
-  db.Gig.findAll({where:{recurring_gig: '1'}, include: [db.Employer] })
-    .then(gigs => res.json(gigs))
-    .catch(console.error);
-});
+  // get all the gigs that are checked Recurring Gig
+  app.get("/api/getGigs", function(req, res) {
+    db.Gig.findAll({ where: { recurring_gig: "1" }, include: [db.Employer] })
+      .then(gigs => res.json(gigs))
+      .catch(console.error);
+  });
 
   // get gig by id
   app.get("/api/getGig/:id", function(req, res) {
