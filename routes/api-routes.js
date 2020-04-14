@@ -107,6 +107,7 @@ module.exports = function(app) {
     let email = req.body.email;
     let phone = req.body.phone;
     let password = req.body.password;
+
     db.Employer.create({
       first_name,
       last_name,
