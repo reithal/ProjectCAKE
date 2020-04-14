@@ -7,8 +7,8 @@ module.exports = function(app) {
     res.render("index");
   });
 
-  app.get("/About", function(req, res) {
-    res.render("About");
+  app.get("/about", function(req, res) {
+    res.render("about");
   });
   
   app.get("/signup", function(req, res) {
