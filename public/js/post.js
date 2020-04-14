@@ -1,4 +1,13 @@
 $(document).ready(function() {
+  // get current loged in employer id
+  var employerid = "";
+
+  $.get("/api/user_data")
+    .then(function(response) {
+      employerid = response.id;
+    }) // If there's an error, log the error
+    .catch(console.error);
+
   // Getting references to our form and input
   var postForm = $("form.gigForm");
   var titleInput = $("#title");
@@ -15,6 +24,7 @@ $(document).ready(function() {
   postForm.on("submit", function(event) {
     event.preventDefault();
     var userData = {
+      // employerid: ,
       title: titleInput.val().trim(),
       category: categoryInput.val().trim(),
       volunteer: $("#volunteer").is(":checked"),
@@ -26,9 +36,10 @@ $(document).ready(function() {
       description: descriptionInput.val().trim(),
       pay: payInput.val().trim(),
       laboring_hours: laboring_hoursInput.val().trim(),
-      completion_date: completion_dateInput.val().trim()
+      completion_date: completion_dateInput.val().trim(),
+      employerid: employerid
     };
-    console.log(userData);
+
     if (
       !userData.title ||
       !userData.category ||
@@ -38,57 +49,19 @@ $(document).ready(function() {
       !userData.zipcode ||
       !userData.description ||
       !userData.laboring_hours ||
-      !userData.completion_date
+      !userData.completion_date ||
+      !userData.employerid
     ) {
       return;
     }
     // If we have the required fields, run postGig function
-    postGig(
-      userData.title,
-      userData.category,
-      userData.volunteer,
-      userData.recurring_gig,
-      userData.street_address,
-      userData.city,
-      userData.state,
-      userData.zipcode,
-      userData.description,
-      userData.pay,
-      userData.laboring_hours,
-      userData.completion_date
-    );
+    postGig(userData);
   });
 
   // Does a post to the signup route. If successful, we are redirected to the members page
   // Otherwise we log any errors
-  function postGig(
-    title,
-    category,
-    volunteer,
-    recurring_gig,
-    street_address,
-    city,
-    state,
-    zipcode,
-    description,
-    pay,
-    laboring_hours,
-    completion_date
-  ) {
-    $.post("/api/createGig", {
-      title: title,
-      category: category,
-      volunteer: volunteer,
-      recurring_gig: recurring_gig,
-      street_address: street_address,
-      city: city,
-      state: state,
-      zipcode: zipcode,
-      description: description,
-      pay: pay,
-      laboring_hours: laboring_hours,
-      completion_date: completion_date
-    })
+  function postGig(newGig) {
+    $.post("/api/createGig", newGig)
       .then(function(data) {
         window.location.replace("/gigs"); //if you want it to keep posting gigs or /gigs to show all after creating one.
         // If there's an error, handle it by throwing up a bootstrap alert
