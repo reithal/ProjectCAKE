@@ -7,6 +7,14 @@ module.exports = function(app) {
     res.render("index");
   });
 
+  app.get("/about", function(req, res) {
+    res.render("about");
+  });
+  
+  app.get("/signup", function(req, res) {
+    res.render("signup");
+  });
+
   app.get("/gigs", function(req, res) {
     res.render("gigs");
   });
