@@ -10,6 +10,10 @@ module.exports = function(app) {
   app.get("/About", function(req, res) {
     res.render("About");
   });
+  
+  app.get("/signup", function(req, res) {
+    res.render("signup");
+  });
 
   app.get("/gigs", function(req, res) {
     res.render("gigs");
