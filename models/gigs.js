@@ -61,7 +61,7 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   Gigs.associate = function(models) {
-    Gigs.belongsTo(models.Employer, { fereignKey: { allowNull: false } });
+    Gigs.belongsTo(models.Employer, { foreignKey: { allowNull: false } });
   };
 
   return Gigs;

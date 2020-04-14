@@ -3,7 +3,7 @@ $(document).ready(function() {
   var loginBtn = $("button#login");
   var emailInput = $("input#email-input");
   var passwordInput = $("input#password-input");
-  $('#authError').hide(); 
+  $("#authError").hide();
   // When the form is submitted, we validate there's an email and password entered
   loginBtn.on("click", function(event) {
     event.preventDefault();
@@ -11,13 +11,13 @@ $(document).ready(function() {
       email: emailInput.val().trim(),
       password: passwordInput.val().trim()
     };
-   
+
     if (!userData.email || !userData.password) {
       return;
     }
 
     // If we have an email and password we run the loginUser function and clear the form
-   //console.log(userData);
+    //console.log(userData);
     loginUser(userData.email, userData.password);
     emailInput.val("");
     passwordInput.val("");
@@ -30,15 +30,14 @@ $(document).ready(function() {
       password: password
     })
       .then(function() {
-        window.location.replace("/members");
+        window.location.replace("/post");
         // If there's an error, log the error
       })
       .catch(function(err) {
-        
-        if (err.status === 401){
-          console.log("captured 401")
-          $('#authError').show();
-          $('#authErrorText').css("text-color", "red");
+        if (err.status === 401) {
+          console.log("captured 401");
+          $("#authError").show();
+          $("#authErrorText").css("text-color", "red");
         }
         console.log(err);
       });
