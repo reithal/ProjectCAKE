@@ -6,58 +6,58 @@ module.exports = function(sequelize, DataTypes) {
     title: {
       type: DataTypes.TEXT,
       allowNull: false,
-      unique: false,
+      unique: false
     },
     description: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     category: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     volunteer: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
-      allowNull: false,
+      allowNull: false
     },
     recurring_gig: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
-      allowNull: true,
+      allowNull: true
     },
     pay: {
       type: DataTypes.DECIMAL,
-      allowNull: true,
+      allowNull: true
     },
     street_address: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     city: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     state: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     zipcode: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: false
     },
     laboring_hours: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: true
     },
     completion_date: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: DataTypes.DATE,
+      allowNull: false
     },
     assigned_to_id: {
       type: DataTypes.INTEGER,
-      allowNull: true,
-    },
+      allowNull: true
+    }
   });
 
   Gigs.associate = function(models) {
