@@ -15,7 +15,7 @@ $(document).ready(function() {
       email: emailInput.val().trim(),
       password: passwordInput.val().trim()
     };
-    console.log(userData)
+    //console.log(userData)
     if (!userData.email || !userData.password) {
       return;
     }
@@ -31,10 +31,28 @@ $(document).ready(function() {
     $.post("/api/createEmployer", Employer)
       .then(function(data) {
         console.log(data)
-        window.location.replace("/post?" + data.id);
+        $('.modal-body').empty();
+        $('#signupDetailLongTitle').text("Registration Complete!");
+        $('.modal-body').append(`<hr>${data.first_name} ${data.last_name}`);
+        $('.modal-body').append(` Your user ID is: ${data.email}`);
+        
+
+        $("#signupDetail").modal('show');
+        //window.location.replace("/login");
         // If there's an error, handle it by throwing up a bootstrap alert
       })
       .catch(handleLoginErr);
+
+      $(document).on("click", "#signupBtn", function () {
+        
+        //console.log(index);      
+        window.location.replace("/login");
+        
+      });
+
+      $('#signupDetail').on('hidden.bs.modal', function () {
+        window.location.replace("/login");
+    });
   }
 
   function handleLoginErr(err) {

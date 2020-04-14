@@ -115,7 +115,12 @@ module.exports = function(app) {
       password
     })
       .then(newEmployer => {
-        res.json("Employer added!");
+        res.json({
+          first_name: newEmployer.first_name,
+          last_name: newEmployer.last_name,
+          email: newEmployer.email,
+          id: newEmployer.id
+        });
       })
       .catch(err => console.log(err));
   });
