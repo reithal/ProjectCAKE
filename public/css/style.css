@@ -71,3 +71,13 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+/*About CSS*/
+
+.card-group {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-bottom: 10px;
+  transform: translate(-50%, -50%)
+  }
