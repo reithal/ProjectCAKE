@@ -1,15 +1,3 @@
-/*
-api routes
-- save employer info
-- get employers information
-- get employer by id
-- save employee info
-- get employee info
-- save gig information
-- get all gigs
-- get gigs by zipcode
-*/
-
 // Requiring our models and passport as we've configured it
 var db = require("../models");
 var passport = require("../config/passport");
@@ -20,7 +8,7 @@ module.exports = function(app) {
     // Sending back a password, even a hashed password, isn't a good idea
     res.json({
       email: req.user.email,
-      id: req.user.id
+      id: req.user.id,
     });
   });
 
@@ -30,7 +18,7 @@ module.exports = function(app) {
   app.post("/api/signup", function(req, res) {
     db.User.create({
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
     })
       .then(function() {
         res.redirect(307, "/api/login");
@@ -56,7 +44,7 @@ module.exports = function(app) {
       // Sending back a password, even a hashed password, isn't a good idea
       res.json({
         email: req.user.email,
-        id: req.user.id
+        id: req.user.id,
       });
     }
   });
@@ -72,12 +60,12 @@ module.exports = function(app) {
       first_name,
       last_name,
       email,
-      phone
+      phone,
     })
-      .then(newEmployer => {
+      .then((newEmployer) => {
         res.json("Employer added!");
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
 
     db.Gig.create({
       title: req.body.title,
@@ -92,12 +80,12 @@ module.exports = function(app) {
       zipcode: req.body.zipcode,
       completion_date: req.body.completion_date,
       laboring_hours: req.body.laboring_hours,
-      assigned_to_id: req.body.assigned_to_id
+      assigned_to_id: req.body.assigned_to_id,
     })
-      .then(newGig => {
+      .then((newGig) => {
         res.json("Gig was created!");
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   });
 
   // create employer
@@ -113,31 +101,31 @@ module.exports = function(app) {
       last_name,
       email,
       phone,
-      password
+      password,
     })
-      .then(newEmployer => {
+      .then((newEmployer) => {
         res.json({
           first_name: newEmployer.first_name,
           last_name: newEmployer.last_name,
           email: newEmployer.email,
-          id: newEmployer.id
+          id: newEmployer.id,
         });
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   });
 
   // get employers information
   app.get("/api/getEmployers", (req, res) => {
     db.Employer.findAll()
-      .then(employers => res.json(employers))
-      .catch(err => console.log(err));
+      .then((employers) => res.json(employers))
+      .catch((err) => console.log(err));
   });
 
   // get employer information by id
   app.get("/api/getEmployer/:id", (req, res) => {
     db.Employer.findOne({ where: { id: req.params.id } })
-      .then(employer => res.json(employer))
-      .catch(err => console.log(err));
+      .then((employer) => res.json(employer))
+      .catch((err) => console.log(err));
   });
 
   // create applicant
@@ -153,53 +141,53 @@ module.exports = function(app) {
       last_name,
       email,
       phone,
-      qualifiers
+      qualifiers,
     })
-      .then(newApplicant => {
+      .then((newApplicant) => {
         res.json(newApplicant);
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   });
 
   // get applicants information
   app.get("/api/getApplicants", (req, res) => {
     db.Applicant.findAll()
-      .then(applicants => res.json(applicants))
-      .catch(err => console.log(err));
+      .then((applicants) => res.json(applicants))
+      .catch((err) => console.log(err));
   });
 
   // get applicant information by id
   app.get("/api/getApplicant/:id", (req, res) => {
     db.Applicant.findOne({ where: { id: req.params.id } })
-      .then(applicant => res.json(applicant))
-      .catch(err => console.log(err));
+      .then((applicant) => res.json(applicant))
+      .catch((err) => console.log(err));
   });
 
   // get all the gigs
   app.get("/api/getGigs", function(req, res) {
     db.Gig.findAll({ include: [db.Employer] })
-      .then(gigs => res.json(gigs))
+      .then((gigs) => res.json(gigs))
       .catch(console.error);
   });
 
   // get all the gigs that are checked Volunteer
   app.get("/api/getGigs", function(req, res) {
     db.Gig.findAll({ where: { volunteer: "1" }, include: [db.Employer] })
-      .then(gigs => res.json(gigs))
+      .then((gigs) => res.json(gigs))
       .catch(console.error);
   });
 
   // get all the gigs that are checked Recurring Gig
   app.get("/api/getGigs", function(req, res) {
     db.Gig.findAll({ where: { recurring_gig: "1" }, include: [db.Employer] })
-      .then(gigs => res.json(gigs))
+      .then((gigs) => res.json(gigs))
       .catch(console.error);
   });
 
   // get gig by id
   app.get("/api/getGig/:id", function(req, res) {
     db.Gig.findOne({ where: { id: req.params.id }, include: [db.Employer] })
-      .then(gig => res.json(gig))
+      .then((gig) => res.json(gig))
       .catch(console.error);
   });
 
@@ -207,9 +195,9 @@ module.exports = function(app) {
   app.get("/api/getGigsByZipCode/:zipcode", function(req, res) {
     db.Gig.findAll({
       include: [db.Employer],
-      where: { zipcode: req.params.zipcode }
+      where: { zipcode: req.params.zipcode },
     })
-      .then(gigs => res.json(gigs))
+      .then((gigs) => res.json(gigs))
       .catch(console.error);
   });
 
@@ -229,19 +217,19 @@ module.exports = function(app) {
       zipcode: req.body.zipcode,
       completion_date: req.body.completion_date,
       laboring_hours: req.body.laboring_hours,
-      assigned_to_id: req.body.assigned_to_id
+      assigned_to_id: req.body.assigned_to_id,
     })
-      .then(newGig => res.json("Gig was created!"))
-      .catch(err => console.log(err));
+      .then((newGig) => res.json("Gig was created!"))
+      .catch((err) => console.log(err));
   });
 
   // update gig
   app.put("/api/updateGig/:id", (req, res) => {
     db.Gig.findOne({ where: { id: req.params.id } })
-      .then(gig => {
+      .then((gig) => {
         gig
           .update({ assigned_to_id: req.body.assigned_to_id })
-          .then(updatedGig => res.json("Gig was updated!"))
+          .then((updatedGig) => res.json("Gig was updated!"))
           .catch(console.error);
       })
       .catch(console.error);
