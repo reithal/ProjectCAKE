@@ -1,19 +1,19 @@
-$(document).ready(function() {
+$(document).ready(function () {
   $(".nav-item").removeClass("active");
   $("#navGig").addClass("active");
 
   // Getting references to our form and inputs
 
   $.get("/api/getGigs")
-    .then(function(response) {
+    .then(function (response) {
       renderResults(response);
     }) // If there's an error, log the error
-    .catch(function(err) {
+    .catch(function (err) {
       console.log(err);
     });
 
   // Zip Search Button
-  $("#btnZipSearch").on("click", function(e) {
+  $("#btnZipSearch").on("click", function (e) {
     e.preventDefault();
     clearTimeout(errMsgTmOut);
     var zip = $("#zipInput").val();
@@ -22,7 +22,7 @@ $(document).ready(function() {
         .then(response => {
           renderResults(response);
         }) // If there's an error, log the error
-        .catch(function(err) {
+        .catch(function (err) {
           console.log(err);
         });
     } else {
@@ -33,7 +33,7 @@ $(document).ready(function() {
   });
 
   // Clears input text box on click.
-  $("#zipInput").mousedown(function() {
+  $("#zipInput").mousedown(function () {
     $(this).val("");
   });
 });
@@ -73,6 +73,7 @@ function renderResults(gigs) {
       } else {
         typeOfJob = `Willing to Pay $${gigs[i].pay}`;
       }
+      //console.log(gigs[i].id)
       const avatar = `https://api.adorable.io/avatars/100/${gigs[i].EmployerId}@adorable.io.png`;
       var templateString = `<div class="col-lg-3 col-md-4 col-sm-6 mb-4" data-toggle="modal" data-target="#gigDetail">`;
       templateString += ` <div class="clearfix detailBtn card" data-id="${gigs[i].id}" text-center d-block">`;
@@ -93,7 +94,7 @@ function renderResults(gigs) {
   }
 }
 
-$(document).on("click", ".detailBtn", function() {
+$(document).on("click", ".detailBtn", function () {
   const id = $(this).data("id");
   const index = gigObjects.findIndex(x => x.id === id);
   if (gigObjects[index].volunteer) {
@@ -101,9 +102,9 @@ $(document).on("click", ".detailBtn", function() {
   } else {
     typeOfJob = `Willing to Pay $${gigObjects[index].pay}`;
   }
-  console.log(gigObjects[index]);
+  //console.log(gigObjects[index]);
   $(".modal-body").empty();
-  $("#applyBtn").data("id", index);
+  $("#applyBtn").data("id", gigObjects[index].id);
   $("#gigDetailLongTitle").text(gigObjects[index].title);
   $(".modal-body").append(`<strong>Category: </strong>`);
   $(".modal-body").append(`${gigObjects[index].category}`);
@@ -123,7 +124,7 @@ $(document).on("click", ".detailBtn", function() {
     $(".modal-body").append(`<br>${phone}`);
   }
 
-  $(document).on("click", "#applyBtn", function() {
+  $(document).on("click", "#applyBtn", function () {
     var index = $(this).data("id");
     //console.log(index);
     window.location = `/apply/${index}`;
