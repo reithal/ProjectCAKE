@@ -24,7 +24,8 @@ The purpose is more of a volunteer type of gigs.  People can see if it’s a cha
 
 ## Installation
 
-Perform the following command: npm install
+- make sure to start your mamp server
+- to install dependencies run: `npm install` 
 
 This should install Node.js, along with Express, Sequelize, MySQL2 modules and express-handlebars.
 
@@ -32,7 +33,7 @@ This should install Node.js, along with Express, Sequelize, MySQL2 modules and e
 
 The application can be invoked locally with the following command:
 
-node server.js
+- `npm run server` to start server
 
 Or you can use a demo of the application here: ![DEMO](heroku url here)
 
